@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    }
+  
+  body {
+    background: #222222;
+    padding-bottom: 56px; }
+  
+  #main {
+    padding-left: 0; }
+
+  sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0 !important;
+    background: #303030;
+    height: calc(100vh - 56px);
+    width: inherit;
+    overflow-y: auto;
+    border-right: 2px solid #555; }
+    sidebar::-webkit-scrollbar{
+      width: 10px;
+      background-color: #222; }
+    sidebar::-webkit-scrollbar-thumb{
+      background-color: black;
+      -webkit-border-radius: 1ex; }
+    sidebar .logo {
+      width: 100%;
+      padding: 15px; }
+    sidebar section > * {
+      padding: 0 15px; }
+    sidebar .menu-item {
+      padding-left: 0px; }
+      sidebar .menu-item a {
+        transition: border-left, 0.2s;
+        padding-left: 15px;
+        color: #c8c8c8; }
+        sidebar .menu-item a:hover {
+          color: white; }
+      sidebar .menu-item a.active, sidebar .menu-item a:hover {
+        border-left: 3px solid #00bc8c; }
+  
+  campus img {
+    height: 10px; }
+  
