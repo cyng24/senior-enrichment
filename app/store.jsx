@@ -37,20 +37,26 @@ export function fetchStudents() {
     };
 }
 export function postStudent(student) {
+    console.log("student", student);
     return (dispatch) => {
-        return axios.post('api/students', student)
+        console.log("INSIDE DISPATCH THUNK");
+        return axios.post('/api/students/', student)
         .then(res => res.data)
         .then(newStudent => {
+            console.log("INSIDE AXIOS POST");
             return dispatch(addStudent(newStudent));
         })
         .catch((err) => {console.log(err)});
     }
 }
 export function unpostStudent(student) {
+    console.log("student id", student);
     return (dispath) => {
-        return axios.delete('api/students', student)
+        console.log("INSIDE DISPATCH THUNK");
+        return axios.delete('/api/students/', student)
         .then( res => res.data)
         .then(student => {
+            console.log("INSIDE AXIOS DELETE");
             return dispatchEvent(removeStudent(student))
         })
         .catch( (err) => {console.log(err)});
@@ -78,8 +84,7 @@ export function fetchCampus(campus) {
 }
 export function postCampus(campus) {
     return (dispatch) => {
-        console.log("posting campus", campus);
-        return axios.post('api/campuses', campus)
+        return axios.post('/api/campuses/', campus)
         .then(res => res.data)
         .then(newCampus => {
             return dispatch(addCampus(newCampus));

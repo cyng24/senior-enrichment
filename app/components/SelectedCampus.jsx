@@ -11,8 +11,8 @@ export default class SelectedCampus extends Component {
 
   componentDidMount () {
     const campusId = this.props.match.params.campusId;
-    store.dispatch(fetchCampus(campusId));
     store.dispatch(fetchStudents());
+    store.dispatch(fetchCampus(campusId));
     this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
   }
 
@@ -26,11 +26,11 @@ export default class SelectedCampus extends Component {
     const {campus} = this.state;
     console.log("campus", campus);
     const {students} = this.state;
-    console.log("students", students)
+    console.log("students", students[0]);
     return (
       <div>
       <h3>Campus: { campus.name }</h3>
-        {/* <ul className="media-list">
+        <ul className="media-list">
           { students.map(student => { if(student.campusId === campus.id) {
             <div className="caption" key={ student.id } >
               <h5>
@@ -41,7 +41,7 @@ export default class SelectedCampus extends Component {
             </div>
             }}) 
           }
-        </ul> */}
+        </ul>
       </div>
     );
   }

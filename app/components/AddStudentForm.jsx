@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store, { addStudent, postStudent } from '../store';
+import store, { postStudent } from '../store';
 
   export default class AddStudentForm extends Component {
     
-  constructor () {
-      super();
+  constructor (props) {
+      super(props);
       this.state = {
-        student: '',
-        campus: ''
+        name: '',
+        campusId: ''
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,23 +16,23 @@ import store, { addStudent, postStudent } from '../store';
 
   handleChange(event){
     if(event.target.name === "name") {
-      this.setState({student: event.target.value} )
+      this.setState({name: event.target.value} )
     } else if(event.target.name === "campus") {
-      this.setState({campus: event.target.value})
+      this.setState({campusId: event.target.value})
     }
-    console.log("state", this.state);
   }
 
   handleSubmit(event){
     event.preventDefault();
     const newStudent = {
-      student: this.state.student,
-      campus: this.state.campus
+      name: this.state.name,
+      campusId: parseInt(this.state.campusId)
     };
-    postStudent(newStudent);
+    console.log("newStudent", newStudent);
+    store.dispatch(postStudent(newStudent));
     this.setState({
-      student: '',
-      campus: ''
+      name: '',
+      campusId: ''
     })
   }
 

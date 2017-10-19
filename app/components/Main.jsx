@@ -6,6 +6,7 @@ import CampusList from './CampusList';
 import SelectedCampus from './SelectedCampus';
 import SelectedStudent from './SelectedStudent';
 import AddCampusForm from './AddCampusForm';
+import AddStudentForm from './AddStudentForm';
 
 function Main () {
   return (
@@ -19,6 +20,7 @@ function Main () {
             <Route exact path="/campuses/:campusId" component={SelectedCampus} />
             <Route exact path="/students/:id" component={SelectedStudent} />
             <Route exact path="/addCampus" component={AddCampusForm} />
+            <Route exact path="/addStudent" component={AddStudentForm} />
             <Route component={CampusList} />   
           </Switch>
         </div>

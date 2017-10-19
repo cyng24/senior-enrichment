@@ -24,7 +24,7 @@ export default class StudentList extends Component {
   handleSubmit (event) {
     event.preventDefault();
     console.log("event value", event.target.value);
-    unpostStudent(event.target.value);
+    store.dispatch(unpostStudent(event.target.value));
     
   }
 
@@ -60,7 +60,7 @@ export default class StudentList extends Component {
           }
         </ul>
         <br />
-        <AddStudentForm />
+        <Link to={'/addStudent'}>+ Add Student</Link>
       </div>
       </students>
     );

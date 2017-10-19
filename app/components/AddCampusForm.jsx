@@ -15,18 +15,15 @@ import store, { postCampus } from '../store';
 
   handleChange(event){
       this.setState({campus: event.target.value})
-      console.log("campus value", event.target.value);
   }
 
   handleSubmit(event){
     event.preventDefault();
     const newCampus = {
         name: this.state.campus,
-        image: '/images/venus'
+        image: '/images/venus.jpg'
     }
     store.dispatch(postCampus(newCampus));
-    console.log("postCampus", postCampus());
-    console.log("newCampus", newCampus);
     this.setState({
       campus: ''
     })

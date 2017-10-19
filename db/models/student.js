@@ -5,7 +5,6 @@ const Campus = require('./campus');
 module.exports = db.define('student', {
     name: {
       type: Sequelize.STRING,
-      allowNull: false
     }
   }, {
     defaultScope: {
