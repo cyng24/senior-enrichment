@@ -22,8 +22,6 @@ export default class SelectedStudent extends Component {
         }));
   }
 
-//how would I use campus.getStudents that's created from campus.hasmany(student)
-
   render () {
     const {student} = this.state;
     const {campus} = this.state;

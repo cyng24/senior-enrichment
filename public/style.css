@@ -3,7 +3,7 @@
     }
   
   body {
-    background: #222222;
+    background: #747a83;
     padding-bottom: 56px; }
   
   #main {
@@ -40,7 +40,42 @@
           color: white; }
       sidebar .menu-item a.active, sidebar .menu-item a:hover {
         border-left: 3px solid #00bc8c; }
-  
-  campus img {
-    height: 10px; }
-  
+
+campus{
+  background: #747a83; }  
+  campus #image {
+    padding: 20px;
+    height: 300px; }
+  campus #campuses {
+    display: flex; 
+    padding: 20px; }
+
+header {
+  background: #303030; }    
+  header nav {
+    display: flex; }
+  header h1 {
+    color: white;
+    padding-left: 25px;
+  }
+  header #link {
+    padding: 26px; }
+
+students{
+  background: #767b81; }
+  students #id{
+    position: absolute;
+    padding-left: 5px; }
+  students #name{
+    position: absolute;
+    padding-left: 100px; }
+  students #campus{
+    padding-left: 250px; }
+  students #button{
+    padding-left: 400px; }
+
+form {
+  background: #767b81; }
+  form h3 {
+    font-size: 24px;
+  }

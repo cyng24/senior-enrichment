@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import AddCampusForm from './AddCampusForm';
+import store, { fetchCampuses } from '../store'
 
 export default class CampusList extends Component {
 
     constructor () {
         super();
-        this.state = {
-            campuses: [],
-        };
+        this.state = store.getState();
     }
 
     componentDidMount () {
-        axios.get('/api/campuses/')
-        .then( (res) => res.data)
-        .then( (campuses) => {
-            this.setState({ campuses })
-        });
+       store.dispatch(fetchCampuses());
+       this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {
@@ -24,23 +24,23 @@ export default class CampusList extends Component {
         return (
             <campus>
             <div>
-            <h3>Campuses</h3>
-            <div className="row">
+            <div id="campuses">
                 {
                 campuses.map(campus => (
                     <div className="col-xs-4" key={ campus.id }>
                     <Link className="thumbnail" to={`/campuses/${campus.id}`}>
-                        <img className="image" src={ campus.image } alt="image" />
                         <div className="caption">
-                        <h5>
-                            <span>{ campus.name }</span>
-                        </h5>
+                        <span id="image">{ campus.name }</span>
                         </div>
+                        <img id="image" src={ campus.image } />
                     </Link>
                     </div>
                 ))
                 }
             </div>
+            </div>
+            <div>
+                <Link to={'/addCampus'}> + add Campus </Link>
             </div>
             </campus>
         )

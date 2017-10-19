@@ -7,9 +7,9 @@ export default class Navbar extends Component {
     return (
       <header>
       <nav>
-        <h3>Margaret Hamilton Interplanetary Academy</h3>
-        <Link to="/campuses">HOME</Link>
-        <Link to="/students">STUDENTS</Link>
+        <h1>Margaret Hamilton Interplanetary Academy</h1>
+        <Link id="link" to="/campuses">HOME</Link>
+        <Link id="link" to="/students">STUDENTS</Link>
       </nav>
       </header>
     );

@@ -28,6 +28,11 @@ api.get('/campuses/:campusId/students', function (req, res, next) {
     .then(students => res.json(students))
     .catch(next);
 });
+api.post('/campuses', function (req, res, next) {
+  Campus.create(req.body)
+    .then(campus => res.json(campus))
+    .catch(next);
+})
 // GET api/students
 api.get('/students', function (req, res, next) {
   Student.findAll()

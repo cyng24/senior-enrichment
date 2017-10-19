@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { removeStudent } from '../store';
+import store, { fetchStudents, unpostStudent } from '../store';
+import SelectedStudent from './SelectedStudent'
 import AddStudentForm from './AddStudentForm';
 
 export default class StudentList extends Component {
 
   constructor () {
     super();
-    this.state = {
-      students: []
-    };
+    this.state = store.getState();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount () {
-    axios.get(`/api/students`)
-      .then(res => res.data)
-      .then(students => this.setState({
-        students
-      }));
+  componentDidMount() {
+    store.dispatch(fetchStudents());
+    this.unsubscribe = store.subscribe( () => this.setState(store.getState()));
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   handleSubmit (event) {
     event.preventDefault();
     console.log("event value", event.target.value);
-    removeStudent(event.target.value)
+    unpostStudent(event.target.value);
     
   }
 
@@ -34,32 +32,37 @@ export default class StudentList extends Component {
 
   render () {
     const students = this.state.students;
+    console.log('students', students);
     return (
+      <students>
       <div>
         <ul className="media-list">
           { students.map(student => {
+            // <SelectedStudent id={student.id}/>
             return (
             <div className="caption" key={ student.id }>
-                <h5> 
-                    <span>{ student.id }</span>
+                <h3> 
+                    <span id="id">ID: { student.id }</span>
                     <Link className="thumbnail" to={`/students/${student.id}`}>
-                    <span>{ student.name }</span>
+                    <span id="name">{ student.name }</span>
                     </Link>
-                    <span>{ student.campus.name }</span>
-                    <span className="input-group-btn">
+                    <span id="campus">{ student.campus.name }</span>
+                    <span id="button" className="input-group-btn">
                       <button 
                       className="btn btn-default"
                       onClick={this.handleSubmit}
                       value={student.id} type="submit">X</button>
                     </span>
-                </h5>
-            </div>
+                </h3>
+            </div> 
             );
-            }) 
+          }) 
           }
         </ul>
+        <br />
         <AddStudentForm />
       </div>
+      </students>
     );
   }
 }

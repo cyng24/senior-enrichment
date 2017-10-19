@@ -3,7 +3,10 @@ import { combineReducers } from 'redux'
 const initialState = {
   newStudent: {},
   student: {},
-  students: []
+  students: [],
+  newCampus: {},
+  campus: {},
+  campuses: []
 }
 
 const rootReducer = function(state = initialState, action) {
@@ -16,11 +19,20 @@ const rootReducer = function(state = initialState, action) {
       return Object.assign({}, state, {students: action.students});
 
     case 'ADD_STUDENT':
-      return action.newStudent;
+      return Object.assign({}, state, {students: students.concat(action.newStudent)});
 
     case 'REMOVE_STUDENT':
       return students.filter(student => student.id !== action.id);
 
+    case 'GET_CAMPUS':
+      return Object.assign({}, state, {campus: action.campus});
+
+    case 'GET_CAMPUSES':
+      return Object.assign({}, state, {campuses: action.campuses});
+
+    case 'ADD_CAMPUS':
+      return Object.assign({}, state, {campuses: campuses.concat(action.newCampus)});
+    
     default: 
       return state;
   }
