@@ -10,20 +10,23 @@ export function getStudent (student) {
 export function getStudents (students) {
     return { type: 'GET_STUDENTS', students }
 }
-export function addStudent (studentName, studentCampus) {
-    return { type: 'ADD_STUDENT', newStudent: {name: studentName, campus: studentCampus} }
-}
-export function removeStudent (id){
-    return { type: 'REMOVE_STUDENT', id }
-}
 export function getCampus (campus) {
     return { type: 'GET_CAMPUS', campus }
 }
 export function getCampuses (campuses) {
     return { type: 'GET_CAMPUSES', campuses }
 }
+export function addStudent (studentName, studentCampus) {
+    return { type: 'ADD_STUDENT', newStudent: {name: studentName, campus: studentCampus} }
+}
 export function addCampus (newCampus) {
     return { type: 'ADD_CAMPUS', newCampus }
+}
+export function removeStudent (id){
+    return { type: 'REMOVE_STUDENT', id }
+}
+export function removeCampus (id){
+    return { type: 'REMOVE_CAMPUS', id}
 }
 
 export function fetchStudents() {
@@ -37,16 +40,12 @@ export function fetchStudents() {
     };
 }
 export function postStudent(student) {
-    console.log("student", student);
     return (dispatch) => {
-        console.log("INSIDE DISPATCH THUNK");
         return axios.post('/api/students/', student)
         .then(res => res.data)
         .then(newStudent => {
-            console.log("INSIDE AXIOS POST");
             return dispatch(addStudent(newStudent));
-        })
-        .catch((err) => {console.log(err)});
+        });
     }
 }
 export function unpostStudent(student) {
@@ -90,6 +89,16 @@ export function postCampus(campus) {
             return dispatch(addCampus(newCampus));
         })
         .catch((err) => {console.log(err)});
+    }
+}
+export function unpostCampus(campus) {
+    return (dispath) => {
+        return axios.delete('/api/campuses/', campus)
+        .then( res => res.data)
+        .then(campus => {
+            return dispatchEvent(removeCampus(campus))
+        })
+        .catch( (err) => {console.log(err)});
     }
 }
 

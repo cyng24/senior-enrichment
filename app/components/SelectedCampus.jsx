@@ -26,10 +26,12 @@ export default class SelectedCampus extends Component {
     const {campus} = this.state;
     console.log("campus", campus);
     const {students} = this.state;
-    console.log("students", students[0]);
+    console.log("students", students);
     return (
       <div>
-      <h3>Campus: { campus.name }</h3>
+      <h2>Campus: { campus.name }</h2>
+      <h4>ID: { campus.id }</h4>
+      <h4>Students: </h4>
         <ul className="media-list">
           { students.map(student => { if(student.campusId === campus.id) {
             <div className="caption" key={ student.id } >
@@ -42,6 +44,7 @@ export default class SelectedCampus extends Component {
             }}) 
           }
         </ul>
+        <Link to={'/addStudent'}>+ Add Student To { campus.name }</Link>
       </div>
     );
   }

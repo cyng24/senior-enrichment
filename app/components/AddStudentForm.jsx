@@ -6,34 +6,17 @@ import store, { postStudent } from '../store';
     
   constructor (props) {
       super(props);
-      this.state = {
-        name: '',
-        campusId: ''
-      }
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event){
-    if(event.target.name === "name") {
-      this.setState({name: event.target.value} )
-    } else if(event.target.name === "campus") {
-      this.setState({campusId: event.target.value})
-    }
   }
 
   handleSubmit(event){
     event.preventDefault();
     const newStudent = {
-      name: this.state.name,
-      campusId: parseInt(this.state.campusId)
+      name: event.target.name.value,
+      campusId: parseInt(event.target.campus.value)
     };
     console.log("newStudent", newStudent);
     store.dispatch(postStudent(newStudent));
-    this.setState({
-      name: '',
-      campusId: ''
-    })
   }
 
   render() {
@@ -46,7 +29,6 @@ import store, { postStudent } from '../store';
             className="form-control"
             type="text"
             name="name"
-
             onChange={this.handleChange}
             placeholder="Student Name"
           />
@@ -54,7 +36,6 @@ import store, { postStudent } from '../store';
             className="form-control"
             type="text"
             name="campus"
-
             onChange={this.handleChange}
             placeholder="Campus"
           />

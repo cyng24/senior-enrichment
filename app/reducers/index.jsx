@@ -18,20 +18,23 @@ const rootReducer = function(state = initialState, action) {
     case 'GET_STUDENTS':
       return Object.assign({}, state, {students: action.students});
 
-    case 'ADD_STUDENT':
-      return Object.assign({}, state, {students: students.concat(action.newStudent)});
-
-    case 'REMOVE_STUDENT':
-      return students.filter(student => student.id !== action.id);
-
     case 'GET_CAMPUS':
       return Object.assign({}, state, {campus: action.campus});
 
     case 'GET_CAMPUSES':
       return Object.assign({}, state, {campuses: action.campuses});
 
+    case 'ADD_STUDENT':
+      return Object.assign({}, state, {students: state.students.concat(action.newStudent)});
+
     case 'ADD_CAMPUS':
-      return Object.assign({}, state, {campuses: campuses.concat(action.newCampus)});
+      return Object.assign({}, state, {campuses: state.campuses.concat(action.newCampus)});
+    
+    case 'REMOVE_STUDENT':
+      return students.filter(student => student.id !== action.id);
+
+    case 'REMOVE_CAMPUS':
+      return campuses.filter(campus => campus.id !== action.id);
     
     default: 
       return state;
