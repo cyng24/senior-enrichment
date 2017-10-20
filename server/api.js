@@ -34,6 +34,19 @@ api.post('/campuses', function (req, res, next) {
     .then(campus => res.json(campus))
     .catch(next);
 })
+// PUT /api/campuses/:campusId
+api.put('/campuses/:campusId', function (req, res, next) {
+  Campus.update({name: req.body.name}, {id: req.body.id})
+    .then (campus => res.json(campus))
+    .catch(next);
+})
+// DELETE /api/campuses
+api.delete('campuses/:id', function (req, res, next) {
+  const id = req.params.id;
+  Campus.destroy({ where: { id } })
+    .then(() => res.status(204).end())
+    .catch(next);
+});
 // GET api/students
 api.get('/students', function (req, res, next) {
   Student.findAll()
@@ -47,14 +60,18 @@ api.get('/students/:id', function (req, res, next) {
   .then(student => res.json(student))
   .catch(next);
 })
-
 // POST /api/students
 api.post('/students', function (req, res, next) {
   Student.create(req.body)
     .then(student => res.json(student))
     .catch(next);
 });
-
+// PUT /api/students/:studentId
+api.put('/students/:studentId', function (req, res, next) {
+  Student.update({name: req.body.name}, {campus: req.body.campusId})
+    .then (student => res.json(student))
+    .catch(next);
+})
 // DELETE /api/students
 api.delete('students/:id', function (req, res, next) {
   const id = req.params.id;

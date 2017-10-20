@@ -52,8 +52,8 @@ campus{
 
 header {
   background: #303030;
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px; }    
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px; }    
   header nav {
     display: flex; }
   header h1 {

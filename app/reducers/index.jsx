@@ -30,11 +30,14 @@ const rootReducer = function(state = initialState, action) {
     case 'GET_CAMPUSES':
       return Object.assign({}, state, {campuses: action.campuses});
 
+    case 'ADD_STUDENT':
+      return Object.assign({}, state, {students: state.students.concat(action.newStudent)});
+
     case 'ADD_CAMPUS':
       return Object.assign({}, state, {campuses: state.campuses.concat(action.newCampus)});
+<<<<<<< HEAD
+=======
     
-    default: 
-      return state;
   }
 };
 

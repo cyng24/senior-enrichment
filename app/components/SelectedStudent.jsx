@@ -27,19 +27,9 @@ export default class SelectedStudent extends Component {
     const {campus} = this.state;
     return (
       <div>
-      <h3>Student: { student.name }</h3>
-        <ul className="media-list">
-            <div className="caption" key={ student.id } >
-              <ul>
-                  <li>ID: { student.id }</li>
-                  <li>CAMPUS: 
-                  <Link className="thumbnail" to={`/campuses/${campus.id}`}>
-                  { campus.name }
-                  </Link>
-                  </li>
-              </ul>
-            </div>
-        </ul>
+        <h2>Student: { student.name }</h2>
+        <h4>ID: { student.id }</h4>
+        <h4>CAMPUS: <Link className="thumbnail" to={`/campuses/${campus.id}`}>{ campus.name }</Link></h4>
       </div>
     );
   }

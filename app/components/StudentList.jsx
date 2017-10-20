@@ -25,7 +25,6 @@ export default class StudentList extends Component {
     event.preventDefault();
     console.log("event value", event.target.value);
     store.dispatch(unpostStudent(event.target.value));
-    
   }
 
 //how would I use campus.getStudents that's created from campus.hasmany(student)
