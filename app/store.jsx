@@ -36,19 +36,18 @@ export function fetchStudents() {
         .catch((err) => {console.log(err)});
     };
 }
+
 export function postStudent(student) {
-    console.log("student", student);
     return (dispatch) => {
-        console.log("INSIDE DISPATCH THUNK");
         return axios.post('/api/students/', student)
         .then(res => res.data)
         .then(newStudent => {
-            console.log("INSIDE AXIOS POST");
             return dispatch(addStudent(newStudent));
         })
-        .catch((err) => {console.log(err)});
+        // .catch((err) => {console.log(err)});
     }
 }
+
 export function unpostStudent(student) {
     console.log("student id", student);
     return (dispath) => {
