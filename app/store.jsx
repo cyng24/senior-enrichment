@@ -46,7 +46,7 @@ export function postStudent(student) {
         .then(newStudent => {
             return dispatch(addStudent(newStudent));
         })
-        .catch( (err) => {console.log(err)});
+        .catch( (err) => {console.trace(err)});
     }
 }
 export function unpostStudent(student) {
