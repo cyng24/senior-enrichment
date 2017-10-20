@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import store from '../store';
+import UpdateStudentForm from './UpdateStudentForm';
 
 export default class SelectedStudent extends Component {
 
@@ -30,6 +31,8 @@ export default class SelectedStudent extends Component {
         <h2>Student: { student.name }</h2>
         <h4>ID: { student.id }</h4>
         <h4>CAMPUS: <Link className="thumbnail" to={`/campuses/${campus.id}`}>{ campus.name }</Link></h4>
+        <br />
+        <UpdateStudentForm id={student.id} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import store, { fetchCampus, fetchStudents } from '../store';
+import UpdateCampusForm from './UpdateCampusForm';
 
 export default class SelectedCampus extends Component {
 
@@ -26,25 +27,25 @@ export default class SelectedCampus extends Component {
     const {campus} = this.state;
     console.log("campus", campus);
     const {students} = this.state;
-    console.log("students", students);
+    const campusStudents = students.filter((student) => {if(student.campusId === campus.id){return student}})
+    console.log("students", campusStudents);
     return (
       <div>
       <h2>Campus: { campus.name }</h2>
       <h4>ID: { campus.id }</h4>
       <h4>Students: </h4>
         <ul className="media-list">
-          { students.map(student => { if(student.campusId === campus.id) {
-            <div className="caption" key={ student.id } >
-              <h5>
-              <Link className="thumbnail" to={`/students/${student.id}`}> 
-                  <span>{ student.name }</span>
-              </Link>
-              </h5>
-            </div>
-            }}) 
+          { campusStudents.map(student => { return(
+            <li className="caption" key={ student.id } >
+              <Link className="thumbnail" to={`/students/${student.id}`}> { student.name } </Link>
+            </li>
+          )}) 
           }
         </ul>
+        <br />
         <Link to={'/addStudent'}>+ Add Student To { campus.name }</Link>
+        <br />
+        <UpdateCampusForm id={campus.id} />
       </div>
     );
   }

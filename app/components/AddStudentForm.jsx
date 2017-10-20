@@ -6,25 +6,15 @@ import store, { postStudent } from '../store';
     
   constructor (props) {
       super(props);
-      // this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(event){
-  //  console.log('in handle change')
-  // }
-
   handleSubmit(event){
     event.preventDefault();
-    const name = event.target.name.value;
-    const campusId = event.target.campus.value;
-    console.log('name', name, "campus", campusId);
-    
     const newStudent = {
-      name,
-      campusId
+      name: event.target.name.value,
+      campusId: event.target.campus.value
     }
-
     store.dispatch(postStudent(newStudent));
   }
 

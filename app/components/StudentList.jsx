@@ -31,7 +31,6 @@ export default class StudentList extends Component {
 
   render () {
     const students = this.state.students;
-    console.log('students', students);
     return (
       <students>
       <div>

@@ -28,6 +28,9 @@ export function removeStudent (id){
 export function removeCampus (id){
     return { type: 'REMOVE_CAMPUS', id}
 }
+export function changeCampus (campus){
+    return { type: 'CHANGE_CAMPUS', campus}
+}
 
 export function fetchStudents() {
     return (dispatch) => {
@@ -49,17 +52,14 @@ export function postStudent(student) {
         .catch( (err) => {console.trace(err)});
     }
 }
-export function unpostStudent(student) {
-    console.log("student id", student);
-    return (dispath) => {
-        console.log("INSIDE DISPATCH THUNK");
-        return axios.delete('/api/students/', student)
-        .then( res => res.data)
+export function unpostStudent(id) {
+    return (dispatch) => {
+        return axios.delete(`/api/students/${id}`, id)
+        .then( (res) => res.data)
         .then(student => {
-            console.log("INSIDE AXIOS DELETE");
-            return dispatchEvent(removeStudent(student))
+            return dispatch(removeStudent(student))
         })
-        .catch( (err) => {console.log(err)});
+        .catch( (err) => {console.trace(err)});
     }
 }
 export function fetchCampuses() {
@@ -93,12 +93,34 @@ export function postCampus(campus) {
     }
 }
 export function unpostCampus(campus) {
-    return (dispath) => {
-        return axios.delete('/api/campuses/', campus)
+    return (dispatch) => {
+        return axios.delete(`/api/campuses/${campus}`, campus)
         .then( res => res.data)
         .then(campus => {
-            return dispatchEvent(removeCampus(campus))
+            return dispatch(removeCampus(campus))
         })
+        .catch( (err) => {console.log(err)});
+    }
+}
+export function updateCampus(campus) {
+    console.log("update campus", campus);
+    return (dispatch) => {
+        return axios.put(`/api/campuses/${campus.id}`, campus)
+        .then(campus => {
+            return dispatch(changeCampus(campus))
+        })
+        .then(res => res.data)
+        .catch( (err) => {console.log(err)});
+    }
+}
+export function updateStudent(student) {
+    console.log("update student", student);
+    return (dispatch) => {
+        return axios.put(`/api/students/${student.id}`, student)
+        .then(student => {
+            return dispatch(getStudent(student))
+        })
+        .then(res => res.data)
         .catch( (err) => {console.log(err)});
     }
 }

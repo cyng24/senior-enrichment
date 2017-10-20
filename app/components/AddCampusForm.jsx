@@ -6,21 +6,13 @@ import store, { postCampus } from '../store';
     
   constructor (props) {
       super(props);
-      this.state = {
-        campus: ''
-      }
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event){
-      this.setState({campus: event.target.value})
   }
 
   handleSubmit(event){
     event.preventDefault();
     const newCampus = {
-        name: this.state.campus,
+        name: event.target.name.value,
         image: '/images/venus.jpg'
     }
     store.dispatch(postCampus(newCampus));

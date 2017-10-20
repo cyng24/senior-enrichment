@@ -36,7 +36,8 @@ api.post('/campuses', function (req, res, next) {
 })
 // PUT /api/campuses/:campusId
 api.put('/campuses/:campusId', function (req, res, next) {
-  Campus.update({name: req.body.name}, {id: req.body.id})
+  Campus.update(req.body, 
+    {where: {id: req.params.campusId}})
     .then (campus => res.json(campus))
     .catch(next);
 })

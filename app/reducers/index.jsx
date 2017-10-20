@@ -35,6 +35,10 @@ const rootReducer = function(state = initialState, action) {
 
     case 'REMOVE_CAMPUS':
       return campuses.filter(campus => campus.id !== action.id);
+
+      //CHANGE_CAMPUS doesn't update the campus in the state
+    case 'CHANGE_CAMPUS':
+      return Object.assign({}, state, {campus: action.campus});
     
     default: 
       return state;
